@@ -113,6 +113,4 @@ class SOCMBLikelihood(Likelihood):
 			ws = m["bpw"].weight.T
 			ps_vec[ind] = np.dot(ws, dls[pol])
 		
-		self.log.debug(self.spec_meta[0]["bpw"].weight.T)
-		
 		return ps_vec
