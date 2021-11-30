@@ -1,0 +1,54 @@
+debug: True
+continue: False
+force: True
+
+likelihood:
+  pysolite.SOCMBLikelihood:
+    data_folder: .
+    input_file: sacc_cmbext.fits
+    defaults:
+      polarizations: [ 'TT', 'TE', 'EE' ]
+      scales:
+        TT: [2, 5000]
+        TE: [2, 5000]
+        EE: [2, 5000]
+      symmetrize: True
+
+params:
+  # Sampled
+  cosmomc_theta:
+    latex: \theta_\mathrm{MC}
+    value: 1.04e-2
+  logA:
+    latex: \log(10^{10} A_\mathrm{s})
+    value: 3.065
+  As:
+    value: "lambda logA: 1e-10*np.exp(logA)"
+    latex: A_\mathrm{s}
+  ns:
+    latex: n_\mathrm{s}
+    value: 0.9633
+  ombh2:
+    latex: \Omega_\mathrm{b}h^2
+    value: 0.02212
+  omch2:
+    latex: \Omega_\mathrm{c}h^2
+    value: 0.11959
+  tau:
+    latex: \tau_\mathrm{reio}
+    value: 0.06469
+  H0:
+    latex: H_0
+  sigma8:
+    latex: \sigma_8
+
+theory:
+  camb:
+    stop_at_error: False
+    extra_args:
+      lens_potential_accuracy: 1
+
+sampler:
+  evaluate:
+
+output: chains/eval
